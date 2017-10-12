@@ -4,6 +4,8 @@ namespace TAMK.VCSExample
 {
 	public class Mover : MonoBehaviour
 	{
+        [SerializeField]
+        private float speed = 0;
 		void Update()
 		{
 			/* WASD movement start */
@@ -28,8 +30,16 @@ namespace TAMK.VCSExample
 				Vector3 temp = new Vector3(0,0,-0.1f);
 				transform.position += temp; 
 			}
+            if(Input.GetButtonDown("Jump"))
+            {
+                if(transform.position.y < .55)
+                {
+                    GetComponent<Rigidbody>().velocity = Vector3.up * speed;
+                }
+            }
 
 			/* WASD movement end */
 		}
+
 	}
 }
